@@ -44,9 +44,13 @@ def create_app() -> FastAPI:
 
     init_db()
 
+    from app.api.auth import router as auth_router
     from app.api.health import router as health_router
+    from app.api.masters import router as masters_router
 
     app.include_router(health_router, prefix="/api/v1")
+    app.include_router(auth_router, prefix="/api/v1")
+    app.include_router(masters_router, prefix="/api/v1")
 
     @app.on_event("startup")
     async def _startup():
