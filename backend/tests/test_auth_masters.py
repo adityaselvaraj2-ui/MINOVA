@@ -6,20 +6,20 @@ from app.security import hash_password
 
 def _seed_minimal(db):
     """Create minimal data for auth tests."""
-    if db.query(Role).count() > 0:
+    if db.query(User).filter(User.username == "testuser").first():
         return
-    role = Role(code="FOREMAN", rank=1, label="Foreman", can_enter=True, can_approve=False)
-    db.add(role)
-    sub = Subsidiary(code="NCL", name="Northern Coalfields Limited")
-    db.add(sub)
-    db.flush()
-    user = User(
+    if not db.query(Role).filter(Role.code == "FOREMAN").first():
+        db.add(Role(code="FOREMAN", rank=1, label="Foreman", can_enter=True, can_approve=False))
+        db.flush()
+    if not db.query(Subsidiary).filter(Subsidiary.code == "NCL").first():
+        db.add(Subsidiary(code="NCL", name="Northern Coalfields Limited"))
+        db.flush()
+    db.add(User(
         username="testuser",
         full_name="Test User",
         password_hash=hash_password("testpass"),
         role_code="FOREMAN",
-    )
-    db.add(user)
+    ))
     db.commit()
 
 

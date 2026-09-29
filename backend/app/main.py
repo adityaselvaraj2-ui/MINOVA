@@ -49,6 +49,7 @@ def create_app() -> FastAPI:
     from app.api.auth import router as auth_router
     from app.api.health import router as health_router
     from app.api.masters import router as masters_router
+    from app.api.reports import router as reports_router
     from app.api.shift_entries import router as shift_entries_router
 
     app.include_router(health_router, prefix="/api/v1")
@@ -57,6 +58,7 @@ def create_app() -> FastAPI:
     app.include_router(shift_entries_router, prefix="/api/v1")
     app.include_router(approvals_router, prefix="/api/v1")
     app.include_router(audit_router, prefix="/api/v1")
+    app.include_router(reports_router, prefix="/api/v1")
 
     @app.on_event("startup")
     async def _startup():
