@@ -436,3 +436,50 @@ class AuditLog(Base):
         Index("ix_audit_actor", "actor_id"),
         Index("ix_audit_ts", "ts"),
     )
+
+
+class Document(Base):
+    __tablename__ = "document"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    filename: Mapped[str] = mapped_column(String(500), nullable=False)
+    file_path: Mapped[str] = mapped_column(String(1000), nullable=False)
+    file_type: Mapped[str] = mapped_column(String(20), nullable=False)
+    file_size: Mapped[int] = mapped_column(Integer, nullable=False)
+    page_count: Mapped[int] = mapped_column(Integer, default=0)
+    uploaded_by: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
+    uploaded_at: Mapped[datetime] = mapped_column(DateTime, default=_utcnow)
+    status: Mapped[str] = mapped_column(
+        String(20),
+        CheckConstraint("status IN ('UPLOADED','PROCESSING','READY','ERROR')"),
+        default="UPLOADED",
+    )
+    error_msg: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    chunks: Mapped[list[DocumentChunk]] = relationship(back_populates="document")
+
+    __table_args__ = (
+        Index("ix_document_status", "status"),
+        Index("ix_document_uploader", "uploaded_by"),
+    )
+
+
+class DocumentChunk(Base):
+    __tablename__ = "document_chunk"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    document_id: Mapped[int] = mapped_column(ForeignKey("document.id"), nullable=False)
+    chunk_index: Mapped[int] = mapped_column(Integer, nullable=False)
+    text: Mapped[str] = mapped_column(Text, nullable=False)
+    page_number: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    char_start: Mapped[int] = mapped_column(Integer, default=0)
+    char_end: Mapped[int] = mapped_column(Integer, default=0)
+    token_count: Mapped[int] = mapped_column(Integer, default=0)
+    chroma_id: Mapped[str | None] = mapped_column(String(100), nullable=True)
+
+    document: Mapped[Document] = relationship(back_populates="chunks")
+
+    __table_args__ = (
+        Index("ix_chunk_document", "document_id"),
+        UniqueConstraint("document_id", "chunk_index", name="uq_chunk_doc_idx"),
+    )
