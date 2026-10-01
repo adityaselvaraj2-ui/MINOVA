@@ -1,0 +1,20 @@
+{
+  "date": "2025-05-12",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 1119,
+  "strike": false,
+  "production_t": 27923,
+  "overburden_m3": 15897,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "MBS/BWE-1648",
+      "duration_h": 2.38,
+      "cause": "Vertical roller support structure welding",
+      "lost_t": 1119
+    }
+  ]
+}

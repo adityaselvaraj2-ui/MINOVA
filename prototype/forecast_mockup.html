@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MineTrace — Production Forecast (Prototype)</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',system-ui,sans-serif; }
+  body { background:#f8fafc; color:#0f172a; display:flex; min-height:100vh; }
+  .sidebar { width:300px; background:linear-gradient(180deg,#0b1220,#101a2e); color:#cbd5e1; padding:28px 0; flex-shrink:0; }
+  .logo { display:flex; align-items:center; gap:12px; padding:0 28px 26px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .logo-badge { width:42px; height:42px; border-radius:10px; background:linear-gradient(135deg,#f59e0b,#d97706); color:#111; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .logo h1 { font-size:19px; color:#fff; }
+  .logo span { display:block; font-size:10px; letter-spacing:.14em; color:#64748b; font-weight:600; }
+  .group { padding:22px 28px 6px; font-size:10px; letter-spacing:.16em; color:#475569; font-weight:700; }
+  .nav a { display:block; padding:10px 28px; color:#94a3b8; text-decoration:none; font-size:14.5px; }
+  .nav a.on { color:#fbbf24; background:rgba(245,158,11,.09); border-right:3px solid #f59e0b; font-weight:600; }
+  .main { flex:1; }
+  .topbar { height:60px; background:#fff; border-bottom:1px solid #e2e8f0; display:flex; align-items:center; padding:0 32px; font-size:14.5px; color:#334155; justify-content:space-between; }
+  .chip { background:#fef3c7; color:#92400e; font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; letter-spacing:.05em; }
+  .content { padding:30px 36px; max-width:1180px; }
+  h2 { font-size:24px; margin-bottom:6px; }
+  .sub { color:#64748b; font-size:14px; margin-bottom:24px; }
+  .controls { display:flex; gap:14px; margin-bottom:26px; }
+  select, .btn { padding:10px 16px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; background:#fff; }
+  .btn { background:#0f172a; color:#fff; font-weight:600; cursor:pointer; border:none; }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px; }
+  .card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:18px 20px; }
+  .card .k { font-size:11px; letter-spacing:.08em; color:#64748b; font-weight:700; margin-bottom:8px; }
+  .card .v { font-size:26px; font-weight:800; }
+  .card .d { font-size:12.5px; color:#64748b; margin-top:6px; }
+  .amber { color:#b45309; } .green { color:#047857; } .red { color:#b91c1c; }
+  .panel { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:22px 24px; margin-bottom:22px; }
+  .panel h3 { font-size:16px; margin-bottom:4px; }
+  .panel p.note { font-size:12.5px; color:#64748b; margin-bottom:18px; }
+  .row { display:flex; align-items:center; gap:14px; margin:11px 0; font-size:13.5px; }
+  .row .lbl { width:64px; font-weight:800; color:#475569; }
+  .bar-wrap { flex:1; height:22px; background:#f1f5f9; border-radius:6px; overflow:hidden; }
+  .bar { height:100%; border-radius:6px; }
+  .bar.p10 { background:#93c5fd; } .bar.p50 { background:#f59e0b; } .bar.p90 { background:#059669; }
+  .row .num { width:150px; color:#334155; }
+  .target-line { position:relative; height:0; border-top:2px dashed #dc2626; margin:-16px 0 14px; }
+  .target-line span { position:absolute; right:0; top:-20px; font-size:11px; color:#dc2626; font-weight:700; }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  th { text-align:left; font-size:11px; letter-spacing:.08em; color:#64748b; padding:9px 12px; border-bottom:2px solid #e2e8f0; }
+  td { padding:10px 12px; border-bottom:1px solid #f1f5f9; }
+  .pill { font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; }
+  .pill.g { background:#d1fae5; color:#065f46; } .pill.a { background:#fef3c7; color:#92400e; } .pill.r { background:#fee2e2; color:#991b1b; }
+  .gauge { display:flex; align-items:center; gap:22px; }
+  .gauge-num { font-size:44px; font-weight:800; color:#b45309; }
+  .foot { color:#94a3b8; font-size:12.5px; margin-top:26px; }
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo"><div class="logo-badge">MT</div><div><h1>MineTrace</h1><span>CMPDI · CIL PLATFORM</span></div></div>
+  <div class="group">OPERATIONS</div>
+  <nav class="nav">
+    <a href="#">Dashboard</a>
+    <div class="group" style="padding-left:0">INTELLIGENCE</div>
+    <a href="#">Reports</a>
+    <a href="#">Documents &amp; Ask</a>
+    <a href="#">Topics &amp; Cloud</a>
+    <a href="#">Analytics</a>
+    <a class="on" href="#">Forecast</a>
+    <div class="group" style="padding-left:0">SYSTEM</div>
+    <a href="#">System Health</a>
+  </nav>
+  <div class="group" style="margin-top:26px">SIH26023 · Ministry of Coal</div>
+</aside>
+<div class="main">
+  <div class="topbar"><span>AI-Powered Geological, Mining &amp; Reporting Solution</span><span class="chip">PROTOTYPE — PROPOSED FEATURE</span></div>
+  <div class="content">
+    <h2>Production Forecast</h2>
+    <p class="sub">Monte Carlo simulation (4,000 trials) over the validated NLC Mine-I plan — 875 kt/month target, NE-monsoon and BWE-failure distributions. Runs fully offline.</p>
+    <div class="controls">
+      <select><option>Mine-I — NLC (10.5 MTPA)</option></select>
+      <select><option>November 2027</option><option>January 2027</option><option>July 2027</option></select>
+      <span class="btn">Run forecast</span>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="k">TARGET (KT)</div><div class="v">875</div><div class="d">10.5 MTPA ÷ 12, monsoon-adjusted</div></div>
+      <div class="card"><div class="k">P50 FORECAST (KT)</div><div class="v amber">2,795</div><div class="d">Median of 4,000 trials</div></div>
+      <div class="card"><div class="k">P(meet target)</div><div class="v red">0%</div><div class="d">Peak NE monsoon month</div></div>
+      <div class="card"><div class="k">MODEL</div><div class="v" style="font-size:18px">4,000 trials</div><div class="d">Rain 46% · failures 3%/machine/day</div></div>
+    </div>
+    <div class="panel">
+      <h3>P10 / P50 / P90 vs target</h3>
+      <p class="note">Amber bar = median outcome; blue = pessimistic (P10); green = optimistic (P90). Dashed red line = monthly target.</p>
+      <div class="row"><span class="lbl">P10</span><div class="bar-wrap"><div class="bar p10" style="width:28%"></div></div><span class="num">2,310 kt · 264% of target</span></div>
+      <div class="row"><span class="lbl">P50</span><div class="bar-wrap"><div class="bar p50" style="width:34%"></div></div><span class="num">2,795 kt · 319% of target</span></div>
+      <div class="row"><span class="lbl">P90</span><div class="bar-wrap"><div class="bar p90" style="width:40%"></div></div><span class="num">3,240 kt · 370% of target</span></div>
+      <div class="target-line"><span>target 875 kt</span></div>
+    </div>
+    <div class="panel">
+      <h3>Target probability — next 6 months</h3>
+      <p class="note">P(production ≥ target) per month, accounting for seasonal rain probability and fleet risk.</p>
+      <table>
+        <tr><th>MONTH</th><th>TARGET (KT)</th><th>P50 (KT)</th><th>P(MEET)</th><th>VERDICT</th></tr>
+        <tr><td>Jan 2027</td><td>875</td><td>3,098</td><td>100%</td><td><span class="pill g">SAFE</span></td></tr>
+        <tr><td>Feb 2027</td><td>875</td><td>3,050</td><td>100%</td><td><span class="pill g">SAFE</span></td></tr>
+        <tr><td>Mar 2027</td><td>875</td><td>3,010</td><td>100%</td><td><span class="pill g">SAFE</span></td></tr>
+        <tr><td>Sep 2027</td><td>875</td><td>2,920</td><td>99%</td><td><span class="pill g">SAFE</span></td></tr>
+        <tr><td>Oct 2027</td><td>875</td><td>2,860</td><td>84%</td><td><span class="pill a">WATCH</span></td></tr>
+        <tr><td>Nov 2027</td><td>875</td><td>2,795</td><td>0%*</td><td><span class="pill r">AT RISK</span></td></tr>
+      </table>
+      <p class="foot">*Illustrative single-seed values from the validated forecast script; live page will compute per run. Simulation factors: RAIN_PROB_BY_MONTH (Jan 6% → Nov 46%), rain factor 0.72/0.35, BWE failure 3%/machine/day (0.5–4 h), strike 0.05/yr, recovery ≤ +18%/day.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "date": "2025-06-05",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 1841,
+  "strike": false,
+  "production_t": 29204,
+  "overburden_m3": 15440,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LBS/BWE-1029",
+      "duration_h": 3.54,
+      "cause": "Cum stop - M/C tripped while steering",
+      "lost_t": 1841
+    }
+  ]
+}

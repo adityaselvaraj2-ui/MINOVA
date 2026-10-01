@@ -1,0 +1,20 @@
+{
+  "date": "2025-12-19",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 827,
+  "strike": false,
+  "production_t": 33498,
+  "overburden_m3": 16082,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "MBS/BWE-1648",
+      "duration_h": 1.76,
+      "cause": "Daily maintenance overrun",
+      "lost_t": 827
+    }
+  ]
+}

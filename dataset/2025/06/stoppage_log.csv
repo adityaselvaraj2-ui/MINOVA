@@ -1,0 +1,4 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-06-04,LBS/BWE-1030,521,746,3.75,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-06-05,LBS/BWE-1029,219,431,3.54,electrical_trip,Cum stop - M/C tripped while steering
+2025-06-29,LBS/BWE-1030,499,593,1.58,planned_shifting,Conveyor sequence feeding point changing

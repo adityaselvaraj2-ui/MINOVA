@@ -1,0 +1,17 @@
+{
+  "date": "2025-09-23",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 0,
+  "failure_lost_t": 0,
+  "strike": true,
+  "production_t": 0,
+  "overburden_m3": 0.0,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "STRIKE",
+      "note": "rare industrial action (p=0.05/yr)"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2026-01-02,LBS/BWE-1030,852,924,1.2,electrical_trip,Cum stop - M/C tripped while steering
+2026-01-04,LBS/BWE-1029,327,471,2.4,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-01-04,LHS/BWE-147,700,868,2.8,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-01-14,MBS/BWE-1648,725,929,3.41,planned_shifting,Conveyor sequence feeding point changing
+2026-01-15,LHS/BWE-147,499,542,0.73,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-01-17,MBS/BWE-1648,114,287,2.89,planned_shifting,Conveyor sequence feeding point changing
+2026-01-20,LBS/BWE-1030,573,683,1.84,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-01-25,LBS/BWE-1030,329,506,2.95,electrical_trip,Cum stop - M/C tripped while steering
+2026-01-27,LBS/BWE-1029,551,773,3.71,planned_shifting,Conveyor sequence feeding point changing

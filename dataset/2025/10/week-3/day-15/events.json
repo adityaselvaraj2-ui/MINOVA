@@ -1,0 +1,27 @@
+{
+  "date": "2025-10-15",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 2,
+  "failure_lost_t": 2262,
+  "strike": false,
+  "production_t": 31903,
+  "overburden_m3": 15174,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "NSB/BWE-1357",
+      "duration_h": 2.36,
+      "cause": "Vertical roller support structure welding",
+      "lost_t": 1204
+    },
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LHS/BWE-147",
+      "duration_h": 2.35,
+      "cause": "Daily maintenance overrun",
+      "lost_t": 1058
+    }
+  ]
+}

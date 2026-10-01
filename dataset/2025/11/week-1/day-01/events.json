@@ -1,0 +1,20 @@
+{
+  "date": "2025-11-01",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 846,
+  "strike": false,
+  "production_t": 28227,
+  "overburden_m3": 16070,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LHS/BWE-147",
+      "duration_h": 1.88,
+      "cause": "Cum stop - M/C tripped while steering",
+      "lost_t": 846
+    }
+  ]
+}

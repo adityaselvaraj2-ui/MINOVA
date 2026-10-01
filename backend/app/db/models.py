@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 
 from sqlalchemy import (
+    BigInteger,
     Boolean,
     CheckConstraint,
     DateTime,
@@ -161,8 +162,10 @@ class ShiftEntry(Base):
     foreman_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
     planned_min: Mapped[int] = mapped_column(Integer, nullable=False)
     workers_present: Mapped[int] = mapped_column(Integer, nullable=False)
-    production_milli_t: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
-    ob_milli_m3: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    production_milli_t: Mapped[int] = mapped_column(
+        BigInteger, nullable=False, default=0
+    )
+    ob_milli_m3: Mapped[int] = mapped_column(BigInteger, nullable=False, default=0)
     stoppage_min: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     operating_min: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     weather_code: Mapped[str | None] = mapped_column(String(20), nullable=True)
@@ -248,7 +251,7 @@ class Target(Base):
     period_start: Mapped[date] = mapped_column(nullable=False)
     period_end: Mapped[date] = mapped_column(nullable=False)
     metric_code: Mapped[str] = mapped_column(String(30), nullable=False)
-    value_int: Mapped[int] = mapped_column(Integer, nullable=False)
+    value_int: Mapped[int] = mapped_column(BigInteger, nullable=False)
     unit: Mapped[str] = mapped_column(String(20), nullable=False)
     parent_target_id: Mapped[int | None] = mapped_column(
         ForeignKey("target.id"), nullable=True
@@ -313,7 +316,7 @@ class ReportMetric(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     report_id: Mapped[int] = mapped_column(ForeignKey("report.id"), nullable=False)
     metric_code: Mapped[str] = mapped_column(String(30), nullable=False)
-    value_int: Mapped[int] = mapped_column(Integer, nullable=False)
+    value_int: Mapped[int] = mapped_column(BigInteger, nullable=False)
     unit: Mapped[str] = mapped_column(String(20), nullable=False)
     is_additive: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
 
@@ -364,7 +367,7 @@ class MetricContribution(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     parent_metric_id: Mapped[int] = mapped_column(ForeignKey("report_metric.id"), nullable=False)
     edge_id: Mapped[int] = mapped_column(ForeignKey("lineage_edge.id"), nullable=False)
-    contributed_value_int: Mapped[int] = mapped_column(Integer, nullable=False)
+    contributed_value_int: Mapped[int] = mapped_column(BigInteger, nullable=False)
 
     parent_metric: Mapped[ReportMetric] = relationship(back_populates="contributions")
     edge: Mapped[LineageEdge] = relationship(back_populates="contributions")
@@ -456,11 +459,29 @@ class Document(Base):
     )
     error_msg: Mapped[str | None] = mapped_column(Text, nullable=True)
 
+    # Per-field document tagging (JSON list of strings, e.g. ["HEMM",
+    # "OB", "Mine-I"]). Stored as text; empty list means untagged.
+    doc_tags: Mapped[str] = mapped_column(Text, default="[]")
+
+    # Human extraction review: PENDING -> VERIFIED (trusted) or FLAGGED
+    # (excluded from retrieval until corrected).
+    review_status: Mapped[str] = mapped_column(
+        String(20),
+        CheckConstraint("review_status IN ('PENDING','VERIFIED','FLAGGED')"),
+        default="PENDING",
+    )
+    review_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+    reviewed_by: Mapped[int | None] = mapped_column(
+        ForeignKey("user.id"), nullable=True
+    )
+    reviewed_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+
     chunks: Mapped[list[DocumentChunk]] = relationship(back_populates="document")
 
     __table_args__ = (
         Index("ix_document_status", "status"),
         Index("ix_document_uploader", "uploaded_by"),
+        Index("ix_document_review", "review_status"),
     )
 
 
@@ -476,6 +497,10 @@ class DocumentChunk(Base):
     char_end: Mapped[int] = mapped_column(Integer, default=0)
     token_count: Mapped[int] = mapped_column(Integer, default=0)
     chroma_id: Mapped[str | None] = mapped_column(String(100), nullable=True)
+
+    # Per-field tags for extraction review, e.g. ["ob:147203", "coal:38820",
+    # "shift:A"]. JSON-encoded text; [] means not yet reviewed.
+    field_tags: Mapped[str] = mapped_column(Text, default="[]")
 
     document: Mapped[Document] = relationship(back_populates="chunks")
 

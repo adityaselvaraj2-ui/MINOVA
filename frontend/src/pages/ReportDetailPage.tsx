@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import {
   apiFetch,
+  apiDownload,
   milliToDisplay,
   bpToPercent,
   type Report,
@@ -27,6 +28,8 @@ export default function ReportDetailPage() {
     valid: boolean;
     issues: string[];
   } | null>(null);
+  const [exporting, setExporting] = useState<string | null>(null);
+  const [exportError, setExportError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,6 +57,19 @@ export default function ReportDetailPage() {
   if (!report) {
     return <p className="text-red-600 py-8 text-center">Report not found</p>;
   }
+
+  const handleExport = async (format: "docx" | "pdf") => {
+    if (!token || !id) return;
+    setExporting(format);
+    setExportError(null);
+    try {
+      await apiDownload(`/reports/${id}/export?format=${format}`, token);
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : "Export failed");
+    } finally {
+      setExporting(null);
+    }
+  };
 
   const additive = report.metrics.filter((m) => m.is_additive);
   const derived = report.metrics.filter((m) => !m.is_additive);
@@ -83,6 +99,20 @@ export default function ReportDetailPage() {
           </h2>
         </div>
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => handleExport("docx")}
+            disabled={exporting !== null}
+            className="text-xs bg-gray-900 text-white px-3 py-1.5 rounded-lg font-medium hover:bg-gray-800 disabled:opacity-50"
+          >
+            {exporting === "docx" ? "Preparing..." : "Download DOCX"}
+          </button>
+          <button
+            onClick={() => handleExport("pdf")}
+            disabled={exporting !== null}
+            className="text-xs border border-gray-300 text-gray-700 px-3 py-1.5 rounded-lg font-medium hover:bg-gray-50 disabled:opacity-50"
+          >
+            {exporting === "pdf" ? "Preparing..." : "Download PDF"}
+          </button>
           <span className={`text-xs px-2 py-1 rounded font-medium ${
             report.status === "APPROVED" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-700"
           }`}>
@@ -91,6 +121,10 @@ export default function ReportDetailPage() {
           <span className="text-xs text-gray-500">v{report.version}</span>
         </div>
       </div>
+
+      {exportError && (
+        <p className="text-sm text-red-600">Export failed: {exportError}</p>
+      )}
 
       {reconciliation && (
         <div className={`p-4 rounded-xl border ${

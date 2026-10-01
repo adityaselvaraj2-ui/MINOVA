@@ -1,0 +1,18 @@
+{
+  "date": "2025-10-20",
+  "rainy": true,
+  "rain_intensity": 1,
+  "machine_failures": 0,
+  "failure_lost_t": 0,
+  "strike": false,
+  "production_t": 24162,
+  "overburden_m3": 11956,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "RAIN",
+      "intensity": "moderate",
+      "output_factor": 0.72
+    }
+  ]
+}

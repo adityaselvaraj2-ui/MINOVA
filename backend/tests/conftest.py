@@ -17,6 +17,7 @@ def app():
 
     settings.ensure_dirs()
 
+    import app.db.extended_models  # noqa: F401
     import app.db.models  # noqa: F401
     from app.db.session import Base, get_engine
 

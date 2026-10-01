@@ -1,0 +1,7 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2026-10-03,LHS/BWE-147,393,490,1.62,maintenance,Vertical roller support structure welding
+2026-10-05,LHS/BWE-148,656,702,0.78,maintenance,Vertical roller support structure welding
+2026-10-19,LHS/BWE-148,452,642,3.18,repositioning,BWE track area preparation & repositioning
+2026-10-20,MBS/BWE-1648,550,765,3.59,planned_shifting,Conveyor sequence feeding point changing
+2026-10-21,LBS/BWE-1030,6,221,3.59,maintenance,Daily maintenance overrun
+2026-10-29,LHS/BWE-147,79,113,0.58,awaiting_infrastructure,Waiting for NNTPP conveyor

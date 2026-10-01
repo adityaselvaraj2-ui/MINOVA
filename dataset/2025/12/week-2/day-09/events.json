@@ -1,0 +1,20 @@
+{
+  "date": "2025-12-09",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 2002,
+  "strike": false,
+  "production_t": 26942,
+  "overburden_m3": 15339,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LBS/BWE-1029",
+      "duration_h": 3.85,
+      "cause": "Conveyor sequence feeding point changing",
+      "lost_t": 2002
+    }
+  ]
+}

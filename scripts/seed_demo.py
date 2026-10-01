@@ -99,7 +99,10 @@ def seed():
         ]
         roles = {}
         for code, rank, label, can_enter, can_approve in roles_data:
-            r = Role(code=code, rank=rank, label=label, can_enter=can_enter, can_approve=can_approve)
+            r = Role(
+                code=code, rank=rank, label=label,
+                can_enter=can_enter, can_approve=can_approve,
+            )
             db.add(r)
             roles[code] = r
 
@@ -173,12 +176,36 @@ def seed():
         users["admin"] = admin
 
         user_names = {
-            "FOREMAN": [("ramesh", "Ramesh Kumar"), ("suresh", "Suresh Patel"), ("mahesh", "Mahesh Singh")],
-            "EXEC_SUPERVISOR": [("priya", "Priya Sharma"), ("anita", "Anita Devi"), ("ravi", "Ravi Tiwari")],
-            "AE": [("amit", "Amit Verma"), ("deepak", "Deepak Gupta"), ("rohit", "Rohit Yadav")],
-            "EE": [("sanjay", "Sanjay Mishra"), ("vijay", "Vijay Kumar"), ("ajay", "Ajay Pandey")],
-            "CM": [("rajesh", "Rajesh Srivastava"), ("dinesh", "Dinesh Mohan"), ("ganesh", "Ganesh Rao")],
-            "GM": [("arun", "Arun Prakash"), ("varun", "Varun Sharma"), ("tarun", "Tarun Mehta")],
+            "FOREMAN": [
+                ("ramesh", "Ramesh Kumar"),
+                ("suresh", "Suresh Patel"),
+                ("mahesh", "Mahesh Singh"),
+            ],
+            "EXEC_SUPERVISOR": [
+                ("priya", "Priya Sharma"),
+                ("anita", "Anita Devi"),
+                ("ravi", "Ravi Tiwari"),
+            ],
+            "AE": [
+                ("amit", "Amit Verma"),
+                ("deepak", "Deepak Gupta"),
+                ("rohit", "Rohit Yadav"),
+            ],
+            "EE": [
+                ("sanjay", "Sanjay Mishra"),
+                ("vijay", "Vijay Kumar"),
+                ("ajay", "Ajay Pandey"),
+            ],
+            "CM": [
+                ("rajesh", "Rajesh Srivastava"),
+                ("dinesh", "Dinesh Mohan"),
+                ("ganesh", "Ganesh Rao"),
+            ],
+            "GM": [
+                ("arun", "Arun Prakash"),
+                ("varun", "Varun Sharma"),
+                ("tarun", "Tarun Mehta"),
+            ],
         }
 
         for role_code, name_list in user_names.items():
@@ -198,7 +225,7 @@ def seed():
                 users[(role_code, mine_code)] = u
 
         # --- Approval chains ---
-        for mine_code, (mine, _) in mines.items():
+        for _mine_code, (mine, _) in mines.items():
             for level in ("DAILY", "WEEKLY", "MONTHLY"):
                 chain = [("AE", 1), ("EE", 2)]
                 if level in ("WEEKLY", "MONTHLY"):
@@ -214,10 +241,9 @@ def seed():
         # --- Targets (annual, split equally by month, illustrative) ---
         fy_start = date(2025, 10, 1)
         fy_end = date(2026, 9, 30)
-        for mine_code, (mine, annual_t) in mines.items():
+        for _mine_code, (mine, annual_t) in mines.items():
             monthly_t = annual_t // 12
             ob_annual = annual_t * 4  # 1:4 stripping ratio
-            monthly_ob = ob_annual // 12
 
             db.add(Target(
                 mine_id=mine.id, period_level="ANNUAL",
@@ -352,7 +378,11 @@ def seed():
                                 start_min=dt_start,
                                 end_min=dt_start + dt_dur,
                                 duration_min=dt_dur,
-                                cause_text="Hydraulic system failure" if rng.random() > 0.5 else "Belt conveyor jam",
+                                cause_text=(
+                                    "Hydraulic system failure"
+                                    if rng.random() > 0.5
+                                    else "Belt conveyor jam"
+                                ),
                             ))
                         if has_fire:
                             db.add(DowntimeEvent(
@@ -415,5 +445,6 @@ def seed():
 
 
 if __name__ == "__main__":
+    import app.db.extended_models  # noqa: F401
     Base.metadata.create_all(engine)
     seed()

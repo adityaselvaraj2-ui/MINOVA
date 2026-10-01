@@ -6,10 +6,19 @@ interface RequestOptions {
   token?: string;
 }
 
+function handleAuthFailure() {
+  // Stale/expired session: clear it once and send the user to login.
+  localStorage.removeItem("minetrace_auth");
+  if (!window.location.pathname.startsWith("/login")) {
+    window.location.assign("/login");
+  }
+}
+
 export async function apiFetch<T>(path: string, opts: RequestOptions = {}): Promise<T> {
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-  };
+  const headers: Record<string, string> = {};
+  if (!(opts.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
   if (opts.token) {
     headers["Authorization"] = `Bearer ${opts.token}`;
   }
@@ -17,15 +26,45 @@ export async function apiFetch<T>(path: string, opts: RequestOptions = {}): Prom
   const res = await fetch(`${API_BASE}${path}`, {
     method: opts.method || "GET",
     headers,
-    body: opts.body ? JSON.stringify(opts.body) : undefined,
+    body: opts.body
+      ? opts.body instanceof FormData
+        ? opts.body
+        : JSON.stringify(opts.body)
+      : undefined,
   });
 
+  if (res.status === 401) {
+    // /auth/login itself must NOT bounce (wrong password is a normal 401)
+    if (opts.token) {
+      handleAuthFailure();
+    }
+    const detail = await res.text();
+    throw new Error(`Session expired — please log in again (${detail})`);
+  }
   if (!res.ok) {
     const detail = await res.text();
     throw new Error(`API ${res.status}: ${detail}`);
   }
 
   return res.json();
+}
+
+export async function apiDownload(path: string, token?: string): Promise<void> {
+  const res = await fetch(`${API_BASE}${path}`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+  });
+  if (!res.ok) {
+    throw new Error(`Download failed: ${res.status}`);
+  }
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
 }
 
 export interface HealthResponse {
@@ -168,4 +207,74 @@ export function milliToDisplay(v: number, decimals = 3): string {
 
 export function bpToPercent(v: number): string {
   return (v / 100).toFixed(2) + "%";
+}
+
+export interface DocumentInfo {
+  id: number;
+  filename: string;
+  file_type: string;
+  file_size: number;
+  page_count: number;
+  status: string;
+  uploaded_at: string | null;
+  chunk_count: number;
+}
+
+export interface Citation {
+  ref: string;
+  chunk_id: number;
+  document_id: number;
+  filename: string;
+  page_number: number | null;
+  excerpt: string;
+  review_status?: string | null;
+}
+
+export interface ReviewQueueItem {
+  id: number;
+  filename: string;
+  file_type: string;
+  status: string;
+  review_status: string;
+  review_note: string | null;
+  reviewed_by: number | null;
+  reviewed_at: string | null;
+  doc_tags: string[];
+  uploaded_at: string | null;
+  chunk_count: number;
+}
+
+export interface QueryResult {
+  query: string;
+  answer: string;
+  citations: Citation[];
+  model: string | null;
+  context_count: number;
+  source: string;
+}
+
+export interface TopicKeyword {
+  term: string;
+  weight: number;
+}
+
+export interface Topic {
+  id: number;
+  label: string;
+  keywords: TopicKeyword[];
+  document_count: number;
+  document_ids: number[];
+}
+
+export interface TrendPoint {
+  period: string;
+  counts: { topic: string; count: number }[];
+}
+
+export interface TopicsResult {
+  wordcloud: { text: string; value: number }[];
+  topics: Topic[];
+  trends: TrendPoint[];
+  document_count: number;
+  engine: string;
 }

@@ -1,0 +1,20 @@
+{
+  "date": "2025-09-24",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 290,
+  "strike": false,
+  "production_t": 32262,
+  "overburden_m3": 16422,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LBS/BWE-1030",
+      "duration_h": 0.58,
+      "cause": "Daily maintenance overrun",
+      "lost_t": 290
+    }
+  ]
+}

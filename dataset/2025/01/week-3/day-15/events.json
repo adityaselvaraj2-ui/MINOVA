@@ -1,0 +1,20 @@
+{
+  "date": "2025-01-15",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 1303,
+  "strike": false,
+  "production_t": 27719,
+  "overburden_m3": 15781,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LHS/BWE-148",
+      "duration_h": 3.03,
+      "cause": "Waiting for NNTPP conveyor",
+      "lost_t": 1303
+    }
+  ]
+}

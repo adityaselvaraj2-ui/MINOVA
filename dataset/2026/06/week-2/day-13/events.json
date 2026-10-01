@@ -1,0 +1,20 @@
+{
+  "date": "2026-06-13",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 332,
+  "strike": false,
+  "production_t": 28798,
+  "overburden_m3": 16395,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "NSB/BWE-1357",
+      "duration_h": 0.65,
+      "cause": "Cum stop - M/C tripped while steering",
+      "lost_t": 332
+    }
+  ]
+}

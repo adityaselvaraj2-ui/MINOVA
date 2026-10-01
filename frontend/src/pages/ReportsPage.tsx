@@ -10,7 +10,7 @@ import {
   type Report,
 } from "../api/client";
 
-const LEVELS = ["DAILY", "WEEKLY", "MONTHLY", "QUARTERLY", "ANNUAL"];
+const LEVELS = ["DAILY", "WEEKLY", "MONTHLY", "QUARTERLY", "HALF_YEARLY", "ANNUAL"];
 
 export default function ReportsPage() {
   const { token } = useAuth();

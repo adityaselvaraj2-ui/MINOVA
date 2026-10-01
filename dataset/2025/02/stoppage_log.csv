@@ -1,0 +1,4 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-02-09,LHS/BWE-148,662,854,3.2,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-02-18,MBS/BWE-1648,420,634,3.57,maintenance,Daily maintenance overrun
+2025-02-20,MBS/BWE-1648,278,502,3.74,electrical_trip,Cum stop - M/C tripped while steering

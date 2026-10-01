@@ -1,0 +1,25 @@
+{
+  "date": "2025-05-23",
+  "rainy": true,
+  "rain_intensity": 1,
+  "machine_failures": 1,
+  "failure_lost_t": 672,
+  "strike": false,
+  "production_t": 20462,
+  "overburden_m3": 11650,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "RAIN",
+      "intensity": "moderate",
+      "output_factor": 0.72
+    },
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "MBS/BWE-1648",
+      "duration_h": 1.43,
+      "cause": "Conveyor sequence feeding point changing",
+      "lost_t": 672
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-08",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 473,
+  "strike": false,
+  "production_t": 28641,
+  "overburden_m3": 16306,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LBS/BWE-1029",
+      "duration_h": 0.91,
+      "cause": "BWE track area preparation & repositioning",
+      "lost_t": 473
+    }
+  ]
+}

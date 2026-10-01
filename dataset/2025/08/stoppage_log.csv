@@ -1,0 +1,5 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-08-01,LBS/BWE-1029,415,561,2.44,maintenance,Daily maintenance overrun
+2025-08-16,MBS/BWE-1648,771,823,0.88,planned_shifting,Conveyor sequence feeding point changing
+2025-08-23,NSB/BWE-1357,535,664,2.16,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-08-25,NSB/BWE-1357,391,487,1.6,planned_shifting,Conveyor sequence feeding point changing

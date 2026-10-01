@@ -54,14 +54,6 @@ def build_fact_sheet(db: Session, report: Report) -> dict:
             for t in targets
         }
 
-    _allowed = set()
-    for v in facts.values():
-        if isinstance(v, (int, float)):
-            _allowed.add(str(v))
-        elif isinstance(v, str):
-            _allowed.add(v)
-    facts["_allowed_numbers"] = sorted(_allowed)
-
     return facts
 
 

@@ -1,0 +1,3 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-05-12,MBS/BWE-1648,495,637,2.38,maintenance,Vertical roller support structure welding
+2025-05-23,MBS/BWE-1648,570,655,1.43,planned_shifting,Conveyor sequence feeding point changing

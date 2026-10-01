@@ -13,7 +13,7 @@ def extract_numbers(text: str) -> list[str]:
     raw = _NUMBER_RE.findall(text)
     normalized = []
     for n in raw:
-        clean = n.replace(",", "")
+        clean = n.replace(",", "").rstrip(".")
         if clean in ("0", "1", "2", "3"):
             continue
         normalized.append(clean)

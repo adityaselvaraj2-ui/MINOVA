@@ -1,0 +1,20 @@
+{
+  "date": "2025-06-04",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 1875,
+  "strike": false,
+  "production_t": 27083,
+  "overburden_m3": 15419,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LBS/BWE-1030",
+      "duration_h": 3.75,
+      "cause": "Waiting for NNTPP conveyor",
+      "lost_t": 1875
+    }
+  ]
+}

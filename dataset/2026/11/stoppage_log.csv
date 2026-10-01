@@ -1,0 +1,8 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2026-11-04,LBS/BWE-1030,194,345,2.52,maintenance,Daily maintenance overrun
+2026-11-08,LBS/BWE-1030,903,1034,2.19,electrical_trip,Cum stop - M/C tripped while steering
+2026-11-11,NSB/BWE-1357,119,308,3.15,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-11-12,LHS/BWE-148,121,281,2.68,electrical_trip,Cum stop - M/C tripped while steering
+2026-11-14,MBS/BWE-1648,502,721,3.66,repositioning,BWE track area preparation & repositioning
+2026-11-26,NSB/BWE-1357,272,332,1.01,planned_shifting,Conveyor sequence feeding point changing
+2026-11-29,LHS/BWE-148,723,870,2.46,maintenance,Daily maintenance overrun

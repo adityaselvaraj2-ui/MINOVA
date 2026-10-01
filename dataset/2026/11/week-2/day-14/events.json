@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-14",
+  "rainy": true,
+  "rain_intensity": 1,
+  "machine_failures": 1,
+  "failure_lost_t": 1720,
+  "strike": false,
+  "production_t": 25846,
+  "overburden_m3": 11172,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "RAIN",
+      "intensity": "moderate",
+      "output_factor": 0.72
+    },
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "MBS/BWE-1648",
+      "duration_h": 3.66,
+      "cause": "BWE track area preparation & repositioning",
+      "lost_t": 1720
+    }
+  ]
+}

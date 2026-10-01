@@ -1,0 +1,5 @@
+date,rainy,rain_intensity,machine_failures,production_t,target_t,achievement_pct
+2026-10-29,False,0,1,28877,29167,99.0
+2026-10-30,False,0,0,29457,29167,101.0
+2026-10-31,True,1,0,21000,29167,72.0
+TOTAL,,,1,79334,87501,90.7

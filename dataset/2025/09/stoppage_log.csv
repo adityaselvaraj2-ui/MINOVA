@@ -1,0 +1,5 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-09-09,LHS/BWE-147,660,760,1.68,maintenance,Daily maintenance overrun
+2025-09-12,NSB/BWE-1357,345,512,2.79,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-09-19,LHS/BWE-148,786,869,1.39,repositioning,BWE track area preparation & repositioning
+2025-09-24,LBS/BWE-1030,318,352,0.58,maintenance,Daily maintenance overrun

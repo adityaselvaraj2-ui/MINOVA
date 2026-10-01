@@ -1,0 +1,7 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-03-07,NSB/BWE-1357,137,351,3.58,electrical_trip,Cum stop - M/C tripped while steering
+2025-03-07,LHS/BWE-148,651,754,1.73,maintenance,Vertical roller support structure welding
+2025-03-09,LBS/BWE-1030,442,542,1.68,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-03-19,LBS/BWE-1029,341,459,1.97,maintenance,Vertical roller support structure welding
+2025-03-22,NSB/BWE-1357,216,424,3.48,planned_shifting,Conveyor sequence feeding point changing
+2025-03-30,MBS/BWE-1648,759,849,1.5,maintenance,Vertical roller support structure welding

@@ -1,0 +1,5 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-01-02,LBS/BWE-1030,913,985,1.2,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-01-15,LHS/BWE-148,340,521,3.03,awaiting_infrastructure,Waiting for NNTPP conveyor
+2025-01-17,LHS/BWE-148,628,725,1.63,repositioning,BWE track area preparation & repositioning
+2025-01-22,LBS/BWE-1030,943,1089,2.44,electrical_trip,Cum stop - M/C tripped while steering

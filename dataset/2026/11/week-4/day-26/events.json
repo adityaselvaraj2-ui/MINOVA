@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-26",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 515,
+  "strike": false,
+  "production_t": 33844,
+  "overburden_m3": 16279,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "NSB/BWE-1357",
+      "duration_h": 1.01,
+      "cause": "Conveyor sequence feeding point changing",
+      "lost_t": 515
+    }
+  ]
+}

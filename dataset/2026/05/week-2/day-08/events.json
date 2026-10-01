@@ -1,0 +1,25 @@
+{
+  "date": "2026-05-08",
+  "rainy": true,
+  "rain_intensity": 2,
+  "machine_failures": 1,
+  "failure_lost_t": 958,
+  "strike": false,
+  "production_t": 9836,
+  "overburden_m3": 5600,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "RAIN",
+      "intensity": "heavy",
+      "output_factor": 0.35
+    },
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LHS/BWE-147",
+      "duration_h": 2.13,
+      "cause": "Conveyor sequence feeding point changing",
+      "lost_t": 958
+    }
+  ]
+}

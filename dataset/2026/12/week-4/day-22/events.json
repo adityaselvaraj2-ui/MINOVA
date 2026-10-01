@@ -1,0 +1,25 @@
+{
+  "date": "2026-12-22",
+  "rainy": true,
+  "rain_intensity": 2,
+  "machine_failures": 1,
+  "failure_lost_t": 385,
+  "strike": false,
+  "production_t": 10059,
+  "overburden_m3": 5727,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "RAIN",
+      "intensity": "heavy",
+      "output_factor": 0.35
+    },
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LBS/BWE-1029",
+      "duration_h": 0.74,
+      "cause": "Vertical roller support structure welding",
+      "lost_t": 385
+    }
+  ]
+}

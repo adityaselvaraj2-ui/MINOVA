@@ -1,0 +1,4 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2025-07-10,NSB/BWE-1357,289,364,1.25,planned_shifting,Conveyor sequence feeding point changing
+2025-07-12,NSB/BWE-1357,822,960,2.3,planned_shifting,Conveyor sequence feeding point changing
+2025-07-14,MBS/BWE-1648,366,579,3.56,repositioning,BWE track area preparation & repositioning

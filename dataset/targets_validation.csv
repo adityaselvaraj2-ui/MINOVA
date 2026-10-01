@@ -1,0 +1,7 @@
+constant,value,unit,source,validation
+MONTHLY_TARGET_KT,875,kt/month,NLC Mine-I capacity 10.5 MTPA / 12 (NLC India annual reports; environmentclearance.nic.in Mine-II EC capacity table),12 x 875 = 10500 kt = 10.5 MTPA = official Mine-I capacity
+DAILY_TARGET_T,29167,t/day,MONTHLY_TARGET_KT x 1000 / 30,arithmetic
+BWE_LIGNITE_RATE,520,t/h,"Real M-1 STOPPAGE 07.09.2026: LBS/BWE-1029 output 9,600 t / EWH 18.45 h",from source document
+SHIFT_TWH,18.45,h,Real M-1 STOPPAGE 07.09.2026 TWH column,from source document
+FLEET_NOMINAL_CAPACITY,45700,t/day,Sum(rate x planned_h) over the 6-machine Mine-I fleet,utilization at target = 64% (headroom for catch-up days)
+NOTE_3000KT,3000,kt/month,"User example: equals all three Neyveli mines combined (Mine-I 10.5 + Mine-IA 3.0 + Mine-II 15.0 = 28.5 MTPA -> ~2,375 kt/mo)",superseded by validated 875 kt/month for Mine-I

@@ -1,0 +1,9 @@
+metric,value
+month,2026-06
+production_kt,870
+target_kt,875
+achievement_pct,99.4
+rainy_days,6
+failure_days,6
+rain_and_failure_days,1
+strike_days,0

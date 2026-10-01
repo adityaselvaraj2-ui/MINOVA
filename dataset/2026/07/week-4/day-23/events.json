@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-23",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 469,
+  "strike": false,
+  "production_t": 28646,
+  "overburden_m3": 16308,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "NSB/BWE-1357",
+      "duration_h": 0.92,
+      "cause": "Waiting for NNTPP conveyor",
+      "lost_t": 469
+    }
+  ]
+}

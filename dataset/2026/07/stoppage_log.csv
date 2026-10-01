@@ -1,0 +1,8 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2026-07-01,LHS/BWE-147,496,704,3.48,electrical_trip,Cum stop - M/C tripped while steering
+2026-07-02,LHS/BWE-148,18,81,1.05,maintenance,Daily maintenance overrun
+2026-07-08,LBS/BWE-1029,322,376,0.91,repositioning,BWE track area preparation & repositioning
+2026-07-13,LBS/BWE-1029,33,243,3.5,repositioning,BWE track area preparation & repositioning
+2026-07-16,NSB/BWE-1357,164,335,2.86,maintenance,Vertical roller support structure welding
+2026-07-23,NSB/BWE-1357,20,75,0.92,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-07-28,LHS/BWE-147,37,220,3.05,awaiting_infrastructure,Waiting for NNTPP conveyor

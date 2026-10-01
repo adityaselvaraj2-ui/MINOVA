@@ -1,0 +1,20 @@
+{
+  "date": "2025-07-10",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 638,
+  "strike": false,
+  "production_t": 28458,
+  "overburden_m3": 16201,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "NSB/BWE-1357",
+      "duration_h": 1.25,
+      "cause": "Conveyor sequence feeding point changing",
+      "lost_t": 638
+    }
+  ]
+}

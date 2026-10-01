@@ -27,3 +27,7 @@ Thumbs.db
 # Env
 .env
 *.secret
+
+# Portable toolchain & local run artifacts (never push)
+.tools/
+*.log

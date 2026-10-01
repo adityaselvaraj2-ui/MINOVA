@@ -1,0 +1,20 @@
+{
+  "date": "2025-01-17",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 1,
+  "failure_lost_t": 701,
+  "strike": false,
+  "production_t": 28388,
+  "overburden_m3": 16162,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LHS/BWE-148",
+      "duration_h": 1.63,
+      "cause": "BWE track area preparation & repositioning",
+      "lost_t": 701
+    }
+  ]
+}

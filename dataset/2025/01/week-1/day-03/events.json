@@ -1,0 +1,12 @@
+{
+  "date": "2025-01-03",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 0,
+  "failure_lost_t": 0,
+  "strike": false,
+  "production_t": 32540,
+  "overburden_m3": 16605,
+  "target_t": 29167,
+  "events": []
+}

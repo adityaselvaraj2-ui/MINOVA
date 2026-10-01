@@ -1,0 +1,27 @@
+{
+  "date": "2025-03-07",
+  "rainy": false,
+  "rain_intensity": 0,
+  "machine_failures": 2,
+  "failure_lost_t": 2570,
+  "strike": false,
+  "production_t": 26311,
+  "overburden_m3": 14979,
+  "target_t": 29167,
+  "events": [
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "NSB/BWE-1357",
+      "duration_h": 3.58,
+      "cause": "Cum stop - M/C tripped while steering",
+      "lost_t": 1826
+    },
+    {
+      "type": "MACHINE_FAILURE",
+      "machine": "LHS/BWE-148",
+      "duration_h": 1.73,
+      "cause": "Vertical roller support structure welding",
+      "lost_t": 744
+    }
+  ]
+}

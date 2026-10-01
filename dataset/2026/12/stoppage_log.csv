@@ -1,0 +1,4 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2026-12-02,LBS/BWE-1030,678,844,2.77,planned_shifting,Conveyor sequence feeding point changing
+2026-12-13,LBS/BWE-1029,725,778,0.89,planned_shifting,Conveyor sequence feeding point changing
+2026-12-22,LBS/BWE-1029,707,751,0.74,maintenance,Vertical roller support structure welding

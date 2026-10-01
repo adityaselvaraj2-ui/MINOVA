@@ -1,0 +1,18 @@
+{
+  "month": "2027-11",
+  "trials": 4000,
+  "days": 30,
+  "rain_probability_climatology": 0.46,
+  "history_prev_year": {
+    "rainy_days": 14.0,
+    "failure_days": 7.0,
+    "both_days": null
+  },
+  "expected_rain_days": 13.7,
+  "expected_failure_days": 5.0,
+  "p10_kt": 785,
+  "p50_kt": 813,
+  "p90_kt": 837,
+  "target_kt": 875,
+  "prob_meet_target_pct": 0.0
+}

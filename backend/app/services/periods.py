@@ -89,4 +89,8 @@ def child_periods(
             periods.append(quarter_boundaries(period_start.year, q))
         return periods
 
+    if level == "HALF_YEARLY":
+        months = range(1, 7) if period_start.month <= 6 else range(7, 13)
+        return [month_boundaries(period_start.year, m) for m in months]
+
     return []

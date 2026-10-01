@@ -3,13 +3,13 @@ from __future__ import annotations
 import hashlib
 import logging
 
-import httpx
-
-from app.config import settings
 from app.services.factsheet import fact_sheet_to_prompt_block
+from app.services.llm.gateway import chat
 from app.services.numberguard import guard_check
 
 logger = logging.getLogger("minetrace.narration")
+
+LLM_TIMEOUT_S = 180.0  # qwen3:8b cold-load can exceed 2 minutes
 
 SYSTEM_PROMPT = (
     "You are a mining operations analyst writing factual reports for CMPDI/CIL. "
@@ -34,34 +34,6 @@ def _build_user_prompt(fact_sheet: dict) -> str:
         "[INTERPRETATION]\n"
         "Analysis and observations."
     )
-
-
-def _call_ollama(system: str, user: str, model: str) -> str | None:
-    try:
-        resp = httpx.post(
-            f"{settings.ollama_base_url}/api/chat",
-            json={
-                "model": model,
-                "messages": [
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": user},
-                ],
-                "stream": False,
-                "options": {
-                    "temperature": settings.ollama_temperature,
-                    "seed": settings.ollama_seed,
-                    "num_ctx": settings.ollama_num_ctx,
-                },
-            },
-            timeout=120.0,
-        )
-        if resp.status_code == 200:
-            return resp.json()["message"]["content"]
-        logger.warning("Ollama returned %s", resp.status_code)
-        return None
-    except Exception:
-        logger.exception("Ollama call failed")
-        return None
 
 
 def _split_sections(text: str) -> tuple[str, str]:
@@ -91,12 +63,8 @@ def generate_description(
     user_prompt = _build_user_prompt(fact_sheet)
     prompt_hash = hashlib.sha256(user_prompt.encode()).hexdigest()
 
-    model = settings.ollama_primary_model
-    raw_text = _call_ollama(SYSTEM_PROMPT, user_prompt, model)
-
-    if raw_text is None:
-        model = settings.ollama_secondary_model
-        raw_text = _call_ollama(SYSTEM_PROMPT, user_prompt, model)
+    raw_text, model = chat(SYSTEM_PROMPT, user_prompt, timeout=LLM_TIMEOUT_S,
+                           max_tokens=1024)
 
     if raw_text is None:
         return _template_fallback(fact_sheet, prompt_hash)

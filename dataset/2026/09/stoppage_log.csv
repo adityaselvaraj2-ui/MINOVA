@@ -1,0 +1,4 @@
+date,machine,stop_start_min,stop_end_min,duration_h,category,description
+2026-09-06,LBS/BWE-1029,859,1061,3.38,awaiting_infrastructure,Waiting for NNTPP conveyor
+2026-09-27,LBS/BWE-1029,727,901,2.9,maintenance,Daily maintenance overrun
+2026-09-28,NSB/BWE-1357,948,1094,2.44,maintenance,Daily maintenance overrun

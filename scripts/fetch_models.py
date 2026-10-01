@@ -1,7 +1,6 @@
 """Download offline model assets. Run ONCE with internet access."""
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ def fetch_paddleocr():
     try:
         from paddleocr import PaddleOCR
 
-        ocr = PaddleOCR(use_angle_cls=True, lang="en", show_log=False)
+        PaddleOCR(use_angle_cls=True, lang="en", show_log=False)  # cache warm-up
         print(f"  PaddleOCR models cached (check ~/.paddleocr or {dest})")
     except ImportError:
         print("  WARNING: PaddleOCR not installed, skipping")

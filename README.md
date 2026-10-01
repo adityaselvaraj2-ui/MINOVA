@@ -15,9 +15,15 @@ git --version
 
 # ---- 1. Local LLMs via Ollama ----
 ollama serve &               # skip if Ollama already runs as a service
-ollama pull qwen2.5
-ollama pull llama3.1
+ollama pull qwen3:8b         # primary LLM (multilingual EN+HI)
+ollama pull qwen2.5:7b       # smaller fallback
+ollama pull llama3.1:8b      # English-strong fallback
 ollama list
+
+# Hugging Face models (once on a connected machine, then copy ./models)
+#   hf download intfloat/multilingual-e5-small --local-dir models/multilingual-e5-small
+#   hf download BAAI/bge-reranker-v2-m3 --local-dir models/bge-reranker-v2-m3   # optional
+# or run: python scripts/download_models.py --all
 
 # ---- 2. Backend (Python) ----
 mkdir -p minetrace && cd minetrace
