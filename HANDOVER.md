@@ -95,6 +95,16 @@ cd minetrace/infra && docker compose up -d
   sync via `/sync/shift-entries`; build instructions in `field_app/README.md`)
 - BGE-M3 exact-stack retrieval: set `MINETRACE_EMBEDDING_MODEL_PATH=models/bge-m3`
   and re-ingest (`python ../scripts/batch_ingest_dataset.py --reindex`)
+- **Windows installers (packaged desktop app)**: build with
+  `cd backend && .venv/Scripts/python -m PyInstaller --noconfirm --clean minetrace_backend.spec`
+  (produces dist/minetrace-backend.exe; copy to
+  `frontend/src-tauri/sidecar/minetrace-backend-x86_64-pc-windows-msvc.exe`),
+  then `cd frontend && npm run tauri build` →
+  `src-tauri/target/release/bundle/{msi,nsis}/MineTrace_0.1.0_*` (~85 MB).
+  The Tauri shell spawns/kills the backend sidecar automatically (fixed port
+  19823, hidden window until /api/v1/health responds, demo data auto-seeded
+  on first boot; heavy AI engines excluded from the frozen build → BM25-only
+  retrieval, full stack when run from source).
 
 ## Known limitations
 

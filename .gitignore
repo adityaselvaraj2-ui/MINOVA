@@ -31,3 +31,11 @@ Thumbs.db
 # Portable toolchain & local run artifacts (never push)
 .tools/
 *.log
+
+# Sidecar binaries are built locally by PyInstaller (see backend/minetrace_backend.spec);
+# the Tauri build expects frontend/src-tauri/sidecar/minetrace-backend-<triple>.exe present.
+frontend/src-tauri/sidecar/
+frontend/src-tauri/target/
+backend/dist/
+backend/build/
+debug_sidecar.spec

@@ -25,6 +25,9 @@
   },
   "bundle": {
     "active": true,
+    "externalBin": [
+      "sidecar/minetrace-backend"
+    ],
     "targets": "all",
     "icon": [
       "icons/32x32.png",
